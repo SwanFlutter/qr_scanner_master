@@ -21,6 +21,10 @@ A new Flutter project.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
 
+  # Add required frameworks and dependencies
+  s.frameworks = 'AVFoundation', 'CoreImage', 'UIKit', 'Vision', 'VisionKit'
+  s.weak_frameworks = 'SwiftUI'
+
   # If your plugin requires a privacy manifest, for example if it uses any
   # required reason APIs, update the PrivacyInfo.xcprivacy file to describe your
   # plugin's privacy impact, and then uncomment this line. For more information,
