@@ -191,20 +191,20 @@ class BarcodeScanner(private val context: Context) {
                                 "number" to (phone.number ?: ""),
                                 "type" to phone.type
                             )
-                        } ?: emptyList()),
+                        } ?: emptyList<Map<String, Any>>()),
                         "emails" to (contact.emails?.map { email ->
                             mapOf(
                                 "address" to (email.address ?: ""),
                                 "type" to email.type
                             )
-                        } ?: emptyList()),
-                        "urls" to (contact.urls ?: emptyList()),
+                        } ?: emptyList<Map<String, Any>>()),
+                        "urls" to (contact.urls ?: emptyList<String>()),
                         "addresses" to (contact.addresses?.map { address ->
                             mapOf(
-                                "addressLines" to (address.addressLines?.toList() ?: emptyList()),
+                                "addressLines" to (address.addressLines?.toList() ?: emptyList<String>()),
                                 "type" to address.type
                             )
-                        } ?: emptyList())
+                        } ?: emptyList<Map<String, Any>>())
                     )
                 }
             }
