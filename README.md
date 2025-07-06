@@ -7,7 +7,8 @@ Professional QR Code Scanner and Generator Plugin for Flutter with advanced feat
 This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/to/develop-plugins),
 a specialized package that includes platform-specific implementation code for
-Android and/or iOS.7457457457
+Android and/or iOS.7457457457   
+فبل
 
 ### 🎨 **Professional QR Generation**
 - **High-quality QR code generation** with customizable size
