@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -19,9 +21,7 @@ class _SimpleQrExampleState extends State<SimpleQrExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Simple QR Example'),
-      ),
+      appBar: AppBar(title: const Text('Simple QR Example')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -33,9 +33,9 @@ class _SimpleQrExampleState extends State<SimpleQrExample> {
               icon: const Icon(Icons.qr_code_scanner),
               label: const Text('Scan QR Code'),
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -44,25 +44,21 @@ class _SimpleQrExampleState extends State<SimpleQrExample> {
               ),
               child: Text(_scanResult),
             ),
-            
+
             const SizedBox(height: 32),
-            
+
             // Generate Section
             ElevatedButton.icon(
               onPressed: _generateQrCode,
               icon: const Icon(Icons.qr_code),
               label: const Text('Generate QR Code'),
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             if (_generatedQr != null)
               Center(
-                child: Image.memory(
-                  _generatedQr!,
-                  width: 200,
-                  height: 200,
-                ),
+                child: Image.memory(_generatedQr!, width: 200, height: 200),
               ),
           ],
         ),
@@ -74,7 +70,7 @@ class _SimpleQrExampleState extends State<SimpleQrExample> {
     try {
       // Simple scan with default options
       final result = await _qrScanner.quickScan();
-      
+
       setState(() {
         _scanResult = result ?? 'Scan cancelled';
       });
@@ -88,15 +84,17 @@ class _SimpleQrExampleState extends State<SimpleQrExample> {
   Future<void> _generateQrCode() async {
     try {
       // Simple generation with default options
-      final qrBytes = await _qrScanner.quickGenerate('Hello from QR Scanner Master!');
-      
+      final qrBytes = await _qrScanner.quickGenerate(
+        'Hello from QR Scanner Master!',
+      );
+
       setState(() {
         _generatedQr = qrBytes;
       });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Generation error: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Generation error: $e')));
     }
   }
 }

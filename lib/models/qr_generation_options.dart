@@ -5,43 +5,43 @@ import 'dart:ui';
 class QrGenerationOptions {
   /// The size of the QR code in pixels (width and height)
   final int size;
-  
+
   /// The error correction level
   final ErrorCorrectionLevel errorCorrectionLevel;
-  
+
   /// The foreground color of the QR code
   final Color foregroundColor;
-  
+
   /// The background color of the QR code
   final Color backgroundColor;
-  
+
   /// The margin around the QR code in pixels
   final int margin;
-  
+
   /// Optional logo to embed in the center of the QR code
   final Uint8List? logoData;
-  
+
   /// Size of the logo as a percentage of the QR code size (0.0 to 0.3)
   final double logoSizeRatio;
-  
+
   /// Whether to use rounded corners for the QR code modules
   final bool roundedCorners;
-  
+
   /// The radius for rounded corners (if enabled)
   final double cornerRadius;
-  
+
   /// Custom gradient colors (if null, uses solid colors)
   final List<Color>? gradientColors;
-  
+
   /// Gradient direction (0.0 = horizontal, 0.5 = diagonal, 1.0 = vertical)
   final double gradientDirection;
-  
+
   /// Whether to add a border around the QR code
   final bool addBorder;
-  
+
   /// Border width in pixels
   final int borderWidth;
-  
+
   /// Border color
   final Color borderColor;
 
@@ -62,9 +62,15 @@ class QrGenerationOptions {
     this.borderColor = const Color(0xFF000000),
   }) : assert(size > 0 && size <= 2048, 'Size must be between 1 and 2048'),
        assert(margin >= 0, 'Margin must be non-negative'),
-       assert(logoSizeRatio >= 0.0 && logoSizeRatio <= 0.3, 'Logo size ratio must be between 0.0 and 0.3'),
+       assert(
+         logoSizeRatio >= 0.0 && logoSizeRatio <= 0.3,
+         'Logo size ratio must be between 0.0 and 0.3',
+       ),
        assert(cornerRadius >= 0.0, 'Corner radius must be non-negative'),
-       assert(gradientDirection >= 0.0 && gradientDirection <= 1.0, 'Gradient direction must be between 0.0 and 1.0'),
+       assert(
+         gradientDirection >= 0.0 && gradientDirection <= 1.0,
+         'Gradient direction must be between 0.0 and 1.0',
+       ),
        assert(borderWidth >= 0, 'Border width must be non-negative');
 
   /// Creates a copy of this options with the given fields replaced
@@ -107,18 +113,20 @@ class QrGenerationOptions {
     return {
       'size': size,
       'errorCorrectionLevel': errorCorrectionLevel.name,
-      'foregroundColor': foregroundColor.value,
-      'backgroundColor': backgroundColor.value,
+      'foregroundColor': foregroundColor.toARGB32(),
+      'backgroundColor': backgroundColor.toARGB32(),
       'margin': margin,
       'logoData': logoData,
       'logoSizeRatio': logoSizeRatio,
       'roundedCorners': roundedCorners,
       'cornerRadius': cornerRadius,
-      'gradientColors': gradientColors?.map((color) => color.value).toList(),
+      'gradientColors': gradientColors
+          ?.map((color) => color.toARGB32())
+          .toList(),
       'gradientDirection': gradientDirection,
       'addBorder': addBorder,
       'borderWidth': borderWidth,
-      'borderColor': borderColor.value,
+      'borderColor': borderColor.toARGB32(),
     };
   }
 
@@ -149,7 +157,7 @@ class QrGenerationOptions {
   @override
   String toString() {
     return 'QrGenerationOptions(size: $size, errorCorrectionLevel: $errorCorrectionLevel, '
-           'foregroundColor: $foregroundColor, backgroundColor: $backgroundColor)';
+        'foregroundColor: $foregroundColor, backgroundColor: $backgroundColor)';
   }
 }
 
@@ -161,7 +169,7 @@ enum ErrorCorrectionLevel {
   high('HIGH');
 
   const ErrorCorrectionLevel(this.name);
-  
+
   final String name;
 
   static ErrorCorrectionLevel fromString(String name) {
@@ -178,26 +186,26 @@ enum ErrorCorrectionLevel {
 /// Predefined QR generation presets
 class QrGenerationPresets {
   static const QrGenerationOptions standard = QrGenerationOptions();
-  
+
   static const QrGenerationOptions highQuality = QrGenerationOptions(
     size: 1024,
     errorCorrectionLevel: ErrorCorrectionLevel.high,
     margin: 40,
   );
-  
+
   static const QrGenerationOptions colorful = QrGenerationOptions(
     foregroundColor: Color(0xFF2196F3),
     backgroundColor: Color(0xFFF5F5F5),
     roundedCorners: true,
     cornerRadius: 6.0,
   );
-  
+
   static const QrGenerationOptions minimal = QrGenerationOptions(
     size: 256,
     margin: 10,
     errorCorrectionLevel: ErrorCorrectionLevel.low,
   );
-  
+
   static const QrGenerationOptions withBorder = QrGenerationOptions(
     addBorder: true,
     borderWidth: 4,

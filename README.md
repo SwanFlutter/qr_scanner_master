@@ -8,7 +8,7 @@ This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/to/develop-plugins),
 a specialized package that includes platform-specific implementation code for
 Android and/or iOS.7457457457   
-فبل
+
 
 ### 🎨 **Professional QR Generation**
 - **High-quality QR code generation** with customizable size
@@ -351,11 +351,5 @@ flutter run
 
 Contributions are welcome! Please read our contributing guidelines and submit pull requests to our repository.
 
-## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For issues, feature requests, or questions, please visit our [GitHub repository](https://github.com/example/qr_scanner_master).
 

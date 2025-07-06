@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_scanner_master/qr_scanner_master.dart';
+import 'package:qr_scanner_master_example/advanced_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -337,6 +338,14 @@ class _QrScannerDemoState extends State<QrScannerDemo> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AdvancedQrExample()),
+          );
+        },
       ),
     );
   }

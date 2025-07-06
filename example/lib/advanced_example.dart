@@ -1,7 +1,11 @@
+// ignore_for_file: unused_import
+
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:qr_scanner_master/qr_scanner_master.dart';
+import 'package:qr_scanner_master_example/simple_example.dart';
 
 /// Advanced example demonstrating comprehensive QR Scanner Master features
 class AdvancedQrExample extends StatefulWidget {
@@ -14,8 +18,8 @@ class AdvancedQrExample extends StatefulWidget {
 class _AdvancedQrExampleState extends State<AdvancedQrExample> {
   final _qrScanner = QrScannerMaster();
   final _dataController = TextEditingController(text: 'https://flutter.dev');
-  
-  List<QrScanResult> _scanResults = [];
+
+  final List<QrScanResult> _scanResults = [];
   Uint8List? _generatedQr;
   bool _isScanning = false;
   bool _hasPermission = false;
@@ -34,9 +38,15 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
       appBar: AppBar(
         title: const Text('Advanced QR Example'),
         actions: [
+          IconButton(icon: const Icon(Icons.info), onPressed: _showInfo),
           IconButton(
-            icon: const Icon(Icons.info),
-            onPressed: _showInfo,
+            icon: const Icon(Icons.toggle_off_outlined),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SimpleQrExample()),
+              );
+            },
           ),
         ],
       ),
@@ -97,9 +107,12 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Advanced Scanning', style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              'Advanced Scanning',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             const SizedBox(height: 16),
-            
+
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -126,7 +139,7 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
                 ),
               ],
             ),
-            
+
             if (_isScanning)
               const Padding(
                 padding: EdgeInsets.only(top: 16),
@@ -145,9 +158,12 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Advanced Generation', style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              'Advanced Generation',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             const SizedBox(height: 16),
-            
+
             TextField(
               controller: _dataController,
               decoration: const InputDecoration(
@@ -156,9 +172,9 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
               ),
               maxLines: 2,
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -185,9 +201,9 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             if (_generatedQr != null)
               Center(
                 child: Container(
@@ -219,7 +235,10 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
           children: [
             Row(
               children: [
-                Text('Scan Results', style: Theme.of(context).textTheme.titleLarge),
+                Text(
+                  'Scan Results',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 const Spacer(),
                 if (_scanResults.isNotEmpty)
                   TextButton(
@@ -229,21 +248,25 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
               ],
             ),
             const SizedBox(height: 8),
-            
+
             if (_scanResults.isEmpty)
               const Text('No scan results yet')
             else
-              ...(_scanResults.map((result) => Card(
-                margin: const EdgeInsets.only(bottom: 8),
-                child: ListTile(
-                  title: Text(result.data),
-                  subtitle: Text('${result.format} • ${DateTime.fromMillisecondsSinceEpoch(result.timestamp.millisecondsSinceEpoch)}'),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.copy),
-                    onPressed: () => _copyToClipboard(result.data),
+              ...(_scanResults.map(
+                (result) => Card(
+                  margin: const EdgeInsets.only(bottom: 8),
+                  child: ListTile(
+                    title: Text(result.data),
+                    subtitle: Text(
+                      '${result.format} • ${DateTime.fromMillisecondsSinceEpoch(result.timestamp.millisecondsSinceEpoch)}',
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.copy),
+                      onPressed: () => _copyToClipboard(result.data),
+                    ),
                   ),
                 ),
-              ))),
+              )),
           ],
         ),
       ),
@@ -324,7 +347,7 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
 
   Future<void> _generateStandard() async {
     if (_dataController.text.isEmpty) return;
-    
+
     try {
       final qrBytes = await _qrScanner.generateQrCode(
         _dataController.text,
@@ -340,7 +363,7 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
 
   Future<void> _generateColorful() async {
     if (_dataController.text.isEmpty) return;
-    
+
     try {
       final qrBytes = await _qrScanner.generateColorful(_dataController.text);
       setState(() {
@@ -353,9 +376,11 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
 
   Future<void> _generateHighQuality() async {
     if (_dataController.text.isEmpty) return;
-    
+
     try {
-      final qrBytes = await _qrScanner.generatePrintQuality(_dataController.text);
+      final qrBytes = await _qrScanner.generatePrintQuality(
+        _dataController.text,
+      );
       setState(() {
         _generatedQr = qrBytes;
       });
@@ -366,7 +391,7 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
 
   Future<void> _generateWithLogo() async {
     if (_dataController.text.isEmpty) return;
-    
+
     try {
       // This would typically load a logo image
       final qrBytes = await _qrScanner.generateQrCode(
@@ -391,9 +416,9 @@ class _AdvancedQrExampleState extends State<AdvancedQrExample> {
   }
 
   void _showError(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _showInfo() {

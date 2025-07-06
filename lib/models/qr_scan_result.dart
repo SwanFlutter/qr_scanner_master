@@ -2,16 +2,16 @@
 class QrScanResult {
   /// The raw data content of the scanned code
   final String data;
-  
+
   /// The format/type of the scanned code (QR_CODE, EAN_13, CODE_128, etc.)
   final BarcodeFormat format;
-  
+
   /// The timestamp when the scan was performed
   final DateTime timestamp;
-  
+
   /// The corner points of the detected barcode (if available)
   final List<Point>? cornerPoints;
-  
+
   /// Additional metadata about the scan
   final Map<String, dynamic>? metadata;
 
@@ -31,8 +31,8 @@ class QrScanResult {
       timestamp: DateTime.fromMillisecondsSinceEpoch(json['timestamp'] as int),
       cornerPoints: json['cornerPoints'] != null
           ? (json['cornerPoints'] as List)
-              .map((point) => Point.fromJson(point as Map<String, dynamic>))
-              .toList()
+                .map((point) => Point.fromJson(point as Map<String, dynamic>))
+                .toList()
           : null,
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
@@ -77,17 +77,11 @@ class Point {
   const Point(this.x, this.y);
 
   factory Point.fromJson(Map<String, dynamic> json) {
-    return Point(
-      json['x'] as double,
-      json['y'] as double,
-    );
+    return Point(json['x'] as double, json['y'] as double);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'x': x,
-      'y': y,
-    };
+    return {'x': x, 'y': y};
   }
 
   @override
@@ -125,7 +119,7 @@ enum BarcodeFormat {
   unknown('UNKNOWN');
 
   const BarcodeFormat(this.name);
-  
+
   final String name;
 
   static BarcodeFormat fromString(String name) {
