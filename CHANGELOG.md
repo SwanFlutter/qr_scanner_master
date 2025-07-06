@@ -179,3 +179,8 @@ await qrScanner.generateQrCode(
 - **Developer-friendly** APIs
 
 This release establishes QR Scanner Master as the most comprehensive and professional QR code solution for Flutter applications.
+
+
+## 1.0.1
+
+* Fix Pub Point

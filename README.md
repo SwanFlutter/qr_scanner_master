@@ -40,7 +40,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  qr_scanner_master: ^1.0.0
+  qr_scanner_master: ^1.0.1
 ```
 
 Then run:

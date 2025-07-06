@@ -1,7 +1,7 @@
 name: qr_scanner_master
 description: "Professional QR Code Scanner and Generator Plugin for Flutter with advanced features including real-time scanning, QR generation, barcode support."
-version: 1.0.0
-homepage: https://github.com/example/qr_scanner_master
+version: 1.0.1
+homepage: "https://github.com/SwanFlutter/qr_scanner_master"
 
 environment:
   sdk: ^3.8.0
@@ -13,7 +13,7 @@ dependencies:
   plugin_platform_interface: ^2.0.2
   image: ^4.1.7
   path_provider: ^2.1.2
-  permission_handler: ^11.3.0
+  permission_handler: ^12.0.1
 
 dev_dependencies:
   flutter_test:
