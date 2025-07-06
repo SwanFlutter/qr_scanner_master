@@ -258,7 +258,7 @@ class CameraManager(private val activity: Activity) {
     private fun playBeepSound() {
         try {
             if (mediaPlayer == null) {
-                mediaPlayer = MediaPlayer.create(activity, android.R.raw.stat_notify_chat)
+                mediaPlayer = MediaPlayer.create(activity, android.provider.Settings.System.DEFAULT_NOTIFICATION_URI)
             }
             mediaPlayer?.start()
         } catch (e: Exception) {

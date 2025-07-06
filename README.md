@@ -4,21 +4,10 @@ Professional QR Code Scanner and Generator Plugin for Flutter with advanced feat
 
 ## Features
 
-<<<<<<< HEAD
 This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/to/develop-plugins),
 a specialized package that includes platform-specific implementation code for
 Android and/or iOS.7457457457
-=======
-### 🔍 **Advanced Scanning**
-- **Real-time camera scanning** with customizable overlay
-- **Image file scanning** from gallery or file system
-- **Multiple barcode format support** (QR Code, EAN-8/13, Code 39/93/128, DataMatrix, Aztec, PDF417, and more)
-- **Multi-scan mode** for scanning multiple codes in one session
-- **Auto-focus and flash control**
-- **Scan area restriction** for better performance
-- **Audio and haptic feedback**
->>>>>>> 804a076c7404572b1b989a083bb98caaf19ca67b
 
 ### 🎨 **Professional QR Generation**
 - **High-quality QR code generation** with customizable size

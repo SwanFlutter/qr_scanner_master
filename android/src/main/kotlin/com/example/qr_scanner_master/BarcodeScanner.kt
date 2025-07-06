@@ -268,8 +268,9 @@ data class ScanOptions(
 ) {
     companion object {
         fun fromMap(map: Map<String, Any>): ScanOptions {
+            val formatsList = map["formats"] as? List<*>
             return ScanOptions(
-                formats = (map["formats"] as? List<*>)?.mapNotNull { it as? String } ?: emptyList(),
+                formats = formatsList?.filterIsInstance<String>() ?: emptyList(),
                 enableFlash = map["enableFlash"] as? Boolean ?: false,
                 autoFocus = map["autoFocus"] as? Boolean ?: true,
                 multiScan = map["multiScan"] as? Boolean ?: false,

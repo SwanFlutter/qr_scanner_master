@@ -138,7 +138,7 @@ class QrCodeGenerator {
             val logoSize = (width * logoSizeRatio).toInt()
             
             val scaledLogo = Bitmap.createScaledBitmap(logoBitmap, logoSize, logoSize, true)
-            val resultBitmap = bitmap.copy(bitmap.config, true)
+            val resultBitmap = bitmap.copy(bitmap.config ?: Bitmap.Config.ARGB_8888, true)
             val canvas = Canvas(resultBitmap)
             
             val logoX = (width - logoSize) / 2f
