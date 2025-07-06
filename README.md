@@ -31,6 +31,9 @@ Android and/or iOS.7457457457
 - **Extensive customization options**
 - **Memory efficient** image processing
 
+![Capture42](https://github.com/user-attachments/assets/e0035590-2b0f-43b5-ba0c-f6cd41862ff6)
+
+
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:
